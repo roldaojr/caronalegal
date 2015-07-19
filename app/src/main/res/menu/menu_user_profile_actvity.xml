@@ -1,13 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="br.edu.ifrn.tads.caronas.AddTravelActivity">
-    <item android:id="@+id/add_travel_action_save"
+    tools:context="br.edu.ifrn.tads.caronas.UserProfileActivity">
+    <item android:id="@+id/profile_action_save"
         android:title="@string/save"
         android:icon="@android:drawable/ic_menu_save"
-        app:showAsAction="ifRoom"/>
-    <item android:id="@+id/add_travel_action_cancel"
-        android:title="@string/cancel"
-        android:icon="@android:drawable/ic_menu_revert"
         app:showAsAction="ifRoom"/>
 </menu>

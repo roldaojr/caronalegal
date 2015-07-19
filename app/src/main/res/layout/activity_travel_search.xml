@@ -36,60 +36,10 @@
         android:id="@+id/travel_destination_text"
         android:layout_below="@+id/travel_destination_label"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/travel_aperture_datetime"
-        android:id="@+id/travel_aperture_label"
-        android:layout_below="@+id/travel_destination_text"/>
-
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.DeviceDefault.Light.Spinner"
-        android:id="@+id/travel_aperture_time_editText"
-        android:layout_below="@+id/travel_aperture_label"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.DeviceDefault.Light.Spinner"
-        android:id="@+id/travel_aperture_date_text"
-        android:layout_below="@+id/travel_aperture_label"
-        android:layout_toLeftOf="@id/travel_aperture_time_editText"
-        android:layout_toStartOf="@id/travel_aperture_time_editText"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/travel_arrival_datetime"
-        android:id="@+id/travel_arrival_label"
-        android:layout_below="@+id/travel_aperture_date_text"/>
-
-    <TextView
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.DeviceDefault.Light.Spinner"
-        android:id="@+id/travel_arrival_time_editText"
-        android:layout_below="@+id/travel_arrival_label"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.DeviceDefault.Light.Spinner"
-        android:id="@+id/travel_arrival_date_text"
-        android:layout_below="@+id/travel_arrival_label"
-        android:layout_toLeftOf="@id/travel_arrival_time_editText"
-        android:layout_toStartOf="@id/travel_arrival_time_editText"
-        android:layout_alignParentLeft="true" />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/travel_search_button"
         android:text="@string/travel_search"
-        android:layout_alignParentBottom="true"/>
+        android:layout_below="@+id/travel_destination_text"/>
 </RelativeLayout>

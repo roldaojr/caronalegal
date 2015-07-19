@@ -40,4 +40,12 @@ public class TravelDAO extends EntityDAO<Travel> {
                 .queryView(JsonArray.class, JsonObject.class, JsonObject.class);
         return null;
     }
+
+    public List<Travel> findByOriginAndDestination(String origin, String destination) {
+        List<Travel> vr = database.view("travel/by_origin_and_destination")
+                .includeDocs(true)
+                .key(origin, destination)
+                .query(Travel.class);
+        return vr;
+    }
 }

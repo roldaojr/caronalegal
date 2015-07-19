@@ -10,4 +10,10 @@
         android:title="@string/title_activity_add_travel"
         android:icon="@android:drawable/ic_menu_add"
         app:showAsAction="ifRoom" />
+    <item android:id="@+id/travel_list_user_profile"
+        android:title="@string/user_profile"
+        app:showAsAction="never" />
+    <item android:id="@+id/travel_list_user_logout"
+        android:title="@string/user_logout"
+        app:showAsAction="never" />
 </menu>

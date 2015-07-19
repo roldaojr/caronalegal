@@ -1,23 +1,15 @@
 package br.edu.ifrn.tads.caronas;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
-import android.content.Context;
+import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.DatePicker;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import br.edu.ifrn.tads.caronas.data.Travel;
@@ -26,6 +18,7 @@ import br.edu.ifrn.tads.caronas.data.TravelDAO;
 
 public class AddTravelActivity extends AppCompatActivity {
 
+    AsyncTask mAsyncTask;
     private String TAG = AddTravelActivity.class.getName();
     private Travel travel;
     private TextView aperture_date_editText;
@@ -103,34 +96,56 @@ public class AddTravelActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.add_travel_action_save) {
-            validate();
-            TravelDAO dao = new TravelDAO();
-            dao.save(travel);
-            Toast.makeText(this, "Viagem cadastrada", Toast.LENGTH_SHORT).show();
+            getDataAndValidate();
+            mAsyncTask = new TravelSaveAsyncTask(travel);
+            mAsyncTask.execute((Void) null);
         }
         finish();
         return true;
     }
 
-    private void validate() {
+    private void getDataAndValidate() {
+        Resources res = getResources();
         final String origin = travel_origin_editText.getText().toString();
         if(origin.isEmpty()) {
-            travel_origin_editText.setError("Campo obrigatório");
+            travel_origin_editText.setError(res.getString(R.string.required_field));
         } else {
             travel.setOrigin(origin);
         }
         final String destination = travel_destination_editText.getText().toString();
         if(destination.isEmpty()) {
-            travel_destination_editText.setError("Campo obrigatório");
+            travel_destination_editText.setError(res.getString(R.string.required_field));
         } else {
             travel.setDestination(destination);
         }
         final String vacancies = travel_vacancies_editText.getText().toString();
         if(vacancies.isEmpty() || !vacancies.matches("[0-9]")){
-            travel_vacancies_editText.setError("Valor inválido");
+            travel_vacancies_editText.setError(res.getString(R.string.required_field));
         } else {
             travel.setVacancies(Integer.parseInt(vacancies));
         }
         travel.setDriver(App.getCurrentUser());
+    }
+
+    class TravelSaveAsyncTask extends AsyncTask<Void, Void, Void> {
+        private Travel mTravel;
+
+        public TravelSaveAsyncTask(Travel t) {
+            mTravel = t;
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            TravelDAO dao = new TravelDAO();
+            dao.save(mTravel);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            mAsyncTask = null;
+            Toast.makeText(AddTravelActivity.this, R.string.travel_added, Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 }

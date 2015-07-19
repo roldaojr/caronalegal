@@ -19,7 +19,6 @@ import org.lightcouch.CouchDbProperties;
 import java.lang.reflect.Type;
 
 public class Database extends CouchDbClientAndroid {
-    public final static JsonObject blasnkObject = new JsonObject();
 
     public Database(CouchDbProperties properties) {
         super(properties);
@@ -37,7 +36,7 @@ public class Database extends CouchDbClientAndroid {
                     .setPort(5984)
                     .setHost("192.168.16.218")
                     .setMaxConnections(100)
-                    .setConnectionTimeout(180);
+                    .setConnectionTimeout(5000);
             database = new Database(props);
             //} catch (CouchDbException e) {
             //    Log.e(App.TAG, "Não foi possível se conectar ao servidor");
@@ -55,28 +54,28 @@ public class Database extends CouchDbClientAndroid {
         gsonBuilder.registerTypeAdapter(Travel.class, new JsonSerializer<Travel>() {
             public JsonElement serialize(Travel src, Type typeOfSrc,
                                          JsonSerializationContext context) {
-                return new JsonPrimitive(src.getId());
+            return new JsonPrimitive(src.getId());
             }
         });
 
         gsonBuilder.registerTypeAdapter(Travel.class, new JsonDeserializer<Travel>() {
             public Travel deserialize(JsonElement json, Type typeOfT,
                                         JsonDeserializationContext context) throws JsonParseException {
-                return database.find(Travel.class, json.getAsJsonPrimitive().getAsString());
+            return database.find(Travel.class, json.getAsJsonPrimitive().getAsString());
             }
         });
 
         gsonBuilder.registerTypeAdapter(User.class, new JsonSerializer<User>() {
             public JsonElement serialize(User src, Type typeOfSrc,
                                          JsonSerializationContext context) {
-                return new JsonPrimitive(src.getId());
+            return new JsonPrimitive(src.getId());
             }
         });
 
         gsonBuilder.registerTypeAdapter(User.class, new JsonDeserializer<User>() {
             public User deserialize(JsonElement json, Type typeOfT,
                                       JsonDeserializationContext context) throws JsonParseException {
-                return database.find(User.class, json.getAsJsonPrimitive().getAsString());
+            return database.find(User.class, json.getAsJsonPrimitive().getAsString());
             }
         });
 

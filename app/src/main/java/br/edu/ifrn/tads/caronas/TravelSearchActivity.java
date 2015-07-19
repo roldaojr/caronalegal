@@ -1,9 +1,8 @@
 package br.edu.ifrn.tads.caronas;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,8 +10,6 @@ import android.widget.TextView;
 import java.util.Date;
 
 import br.edu.ifrn.tads.caronas.data.Travel;
-import br.edu.ifrn.tads.caronas.data.TravelDAO;
-
 
 public class TravelSearchActivity extends ActionBarActivity implements View.OnClickListener {
     private Travel travel;
@@ -79,9 +76,12 @@ public class TravelSearchActivity extends ActionBarActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        travel.setOrigin(travel_origin_editText.getText().toString());
-        travel.setDestination(travel_destination_editText.getText().toString());
-        TravelDAO dao = new TravelDAO();
-        dao.findByExample(travel);
+        String origin = travel_origin_editText.getText().toString();
+        String destination = travel_destination_editText.getText().toString();
+        Intent in = new Intent(this, TravelSearchResultsActivity.class);
+        in.putExtra("origin", origin);
+        in.putExtra("destination", destination);
+        startActivity(in);
     }
+
 }

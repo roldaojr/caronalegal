@@ -21,13 +21,14 @@ public class RideRequestDAO extends EntityDAO<RideRequest> {
     }
 
     public RideRequest getByTravelAndUser(Travel t, User u) {
-        View dbview = database.view("ride_request/by_travel_and_user")
+        List<RideRequest> results = database.view("travel/by_user")
                 .includeDocs(true)
-                .key(t.getId(), u.getId());
-        ViewResult<JsonArray, JsonObject, RideRequest> vr = dbview.queryView(JsonArray.class, JsonObject.class, RideRequest.class);
-        for(ViewResult<JsonArray, JsonObject, RideRequest>.Rows v: vr.getRows()) {
-            return v.getDoc();
+                .key(t.getId(), u.getId())
+                .query(RideRequest.class);
+        if(results.size() > 0) {
+            return results.get(0);
+        } else {
+            return null;
         }
-        return null;
     }
 }

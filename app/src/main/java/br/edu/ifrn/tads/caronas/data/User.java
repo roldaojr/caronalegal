@@ -4,6 +4,7 @@ public class User extends Entity {
     private String name;
     private String phone;
     private String email;
+    private String password;
 
     public User() {
     }
@@ -34,5 +35,16 @@ public class User extends Entity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isValidPassword(String password) {
+        if(this.password != null) {
+            return this.password.equals(password);
+        }
+        return false;
     }
 }

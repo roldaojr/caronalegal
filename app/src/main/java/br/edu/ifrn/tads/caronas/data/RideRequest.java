@@ -3,12 +3,18 @@ package br.edu.ifrn.tads.caronas.data;
 public class RideRequest extends Entity {
     public enum Status { Cancelled, Pending, Accepted, Rejected }
 
-    private User user;
     private Travel travel;
+    private User user;
     private Status status;
 
     public RideRequest() {
         status = Status.Pending;
+    }
+
+    public RideRequest(Travel travel, User user) {
+        status = Status.Pending;
+        this.travel = travel;
+        this.user = user;
     }
 
     public User getUser() {

@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 
 import br.edu.ifrn.tads.caronas.App;
 
-public class EntityDAO<T> {
+public class EntityDAO<T extends Entity> {
     Database database;
 
     private Class<T> daoType = null;
@@ -16,18 +16,25 @@ public class EntityDAO<T> {
         this.daoType = daoType;
     }
 
-    public void save(T obj) {
+    public void save(Entity obj) {
         database.save(obj);
     }
 
-    public void update(T obj) {
+    public void update(Entity obj) {
         database.update(obj);
     }
 
-    public void delete(T obj) {
+    public void delete(Entity obj) {
         database.remove(obj);
     }
 
+    public void saveOrUpdate(Entity obj) {
+        if(obj.getRevision() == null || obj.getRevision().isEmpty()) {
+            save(obj);
+        } else {
+            update(obj);
+        }
+    }
     public T get(String id) {
         return database.find(daoType, id);
     }
