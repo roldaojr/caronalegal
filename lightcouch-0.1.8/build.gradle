@@ -1,0 +1,2 @@
+configurations.create("default")
+artifacts.add("default", file('lightcouch-0.1.8.jar'))

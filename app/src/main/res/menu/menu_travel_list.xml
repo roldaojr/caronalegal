@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.edu.ifrn.tads.caronas.TravelListActivity">
+    <item android:id="@+id/travel_list_action_search"
+        android:title="@string/title_activity_travel_search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/travel_list_action_add"
+        android:title="@string/title_activity_add_travel"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="ifRoom" />
+</menu>

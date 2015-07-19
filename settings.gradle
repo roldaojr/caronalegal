@@ -1,0 +1,1 @@
+include ':app', ':lightcouch-0.1.8'

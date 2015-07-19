@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Carona Legal</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_travel_detail">Detalhes da Viagem</string>
+    <string name="title_activity_travel_list">Lista de viagens</string>
+    <string name="title_activity_add_travel">Adicionar Viagem</string>
+    <string name="travel_origin">Origem</string>
+    <string name="travel_destination">Destino</string>
+    <string name="travel_aperture_datetime">Data/Hora de Saída</string>
+    <string name="travel_arrival_datetime">Data/Hora de Chegada</string>
+    <string name="travel_aperture">Saída</string>
+    <string name="travel_arrival">Chegada</string>
+    <string name="travel_vacancies">Vagas</string>
+    <string name="travel_vacancies_quant">Quantidade de vagas</string>
+    <string name="travel_request_ride">Pedir carona</string>
+    <string name="travel_request_made">Pedido de carona feito</string>
+    <string name="travel_cancel_ride">Cancelar pedido carona</string>
+    <string name="travel_request_cancelled">Pedido de carona cancelado</string>
+    <string name="travel_cancel">Cancelar viagem</string>
+    <string name="travel_cancelled">Viagem cancelada</string>
+    <string name="travel_driver">Motorista</string>
+    <string name="title_activity_user_travel_list">UserTravelListActivity</string>
+    <string name="title_activity_travel_search">Pesquisar Viagem</string>
+    <string name="travel_search">Pesquisar Viagens</string>
+</resources>
