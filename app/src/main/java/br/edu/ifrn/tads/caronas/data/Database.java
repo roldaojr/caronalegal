@@ -1,19 +1,15 @@
 package br.edu.ifrn.tads.caronas.data;
 
-import android.util.Log;
-
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 
 import org.lightcouch.CouchDbClientAndroid;
-import org.lightcouch.CouchDbException;
 import org.lightcouch.CouchDbProperties;
 
 import java.lang.reflect.Type;

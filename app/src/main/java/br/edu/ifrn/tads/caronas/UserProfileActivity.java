@@ -15,7 +15,7 @@ import br.edu.ifrn.tads.caronas.data.UserDAO;
 
 public class UserProfileActivity extends ActionBarActivity {
     private User profile;
-    UserSaveASyncTask mSaveTask;
+    UserSaveTask mSaveTask;
     private EditText user_name_text;
     private EditText user_email_text;
     private EditText user_phone_text;
@@ -27,8 +27,7 @@ public class UserProfileActivity extends ActionBarActivity {
         user_name_text = (EditText) findViewById(R.id.user_name_text);
         user_email_text = (EditText) findViewById(R.id.user_email_text);
         user_phone_text = (EditText) findViewById(R.id.user_phone_text);
-        profile = App.getCurrentUser();
-        putOnView();
+        new UserLoadTask().execute((Void) null);
     }
 
     @Override
@@ -43,7 +42,7 @@ public class UserProfileActivity extends ActionBarActivity {
         if (item.getItemId() == R.id.profile_action_save) {
             if(mSaveTask == null) {
                 getDataAndValidate();
-                mSaveTask = new UserSaveASyncTask();
+                mSaveTask = new UserSaveTask();
                 mSaveTask.execute();
             }
             return true;
@@ -79,7 +78,7 @@ public class UserProfileActivity extends ActionBarActivity {
         user_phone_text.setText(profile.getPhone());
     }
 
-    class UserSaveASyncTask extends AsyncTask<Void, Void, Void> {
+    private class UserSaveTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... params) {
             UserDAO dao = new UserDAO();
@@ -91,6 +90,23 @@ public class UserProfileActivity extends ActionBarActivity {
         protected void onPostExecute(Void aVoid) {
             mSaveTask = null;
             Toast.makeText(UserProfileActivity.this, R.string.user_profile_saved, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+
+    private class UserLoadTask extends AsyncTask<Void, Void, User> {
+        @Override
+        protected User doInBackground(Void... params) {
+            UserDAO dao = new UserDAO();
+            User u = dao.get(App.getCurrentUser().getId());
+            return u;
+        }
+
+        @Override
+        protected void onPostExecute(User user) {
+            profile = user;
+            App.setCurrentUser(user);
+            putOnView();
         }
     }
 }

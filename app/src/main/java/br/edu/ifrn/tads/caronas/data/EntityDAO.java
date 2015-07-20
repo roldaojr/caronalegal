@@ -29,7 +29,7 @@ public class EntityDAO<T extends Entity> {
     }
 
     public void saveOrUpdate(Entity obj) {
-        if(obj.getRevision() == null || obj.getRevision().isEmpty()) {
+        if(obj.getId() == null || obj.getId().isEmpty()) {
             save(obj);
         } else {
             update(obj);
